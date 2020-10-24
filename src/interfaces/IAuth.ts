@@ -1,5 +1,5 @@
 export interface IAuthRequest {
-  username: string
+  usernameOrEmail: string
   password: string
 }
 

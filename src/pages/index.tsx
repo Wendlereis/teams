@@ -14,8 +14,8 @@ const Home: React.FC = () => {
 
   const [createAuthMutation, { isSuccess: isCreateAuthSuccess }] = useMutation(createAuth)
 
-  function handleOnSubmit(values: IAuthRequest) {
-    createAuthMutation(values)
+  function handleOnSubmit({ password, usernameOrEmail }: IAuthRequest) {
+    createAuthMutation({ password, usernameOrEmail })
 
     isCreateAuthSuccess && router.push('/home')
   }
