@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const teamsApi = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: process.env.NEXT_PUBLIC_TEAMS_API,
 })
