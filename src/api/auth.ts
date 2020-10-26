@@ -1,4 +1,4 @@
-import { teamsApi } from './'
+import { teamsApi } from '.'
 
 import { IAuthRequest, IAuthResponse } from '../interfaces/IAuth'
 
