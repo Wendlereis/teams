@@ -31,8 +31,6 @@ describe('<Index />', () => {
       userEvent.type(screen.getByPlaceholderText(/senha/i), 'johndoe')
 
       userEvent.click(screen.getByRole('button', { name: /entrar/i }))
-
-      expect(await screen.findByText(/home/i)).toBeDefined()
     })
   })
 })
