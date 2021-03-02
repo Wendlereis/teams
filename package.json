@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --watch",
-    "test:coverage": "jest --coverageyarn "
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^0.21.0",
