@@ -1,0 +1,16 @@
+version: '2.1'
+orbs:
+  node: circleci/node@4.2.0
+jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: yarn
+      - run: yarn test:coverage
+workflows:
+  test:
+    jobs:
+      - test

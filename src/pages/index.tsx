@@ -31,8 +31,8 @@ const Home: React.FC = () => {
         <h1>Teams</h1>
 
         <form>
-          <input name="usernameOrEmail" type="text" ref={register} />
-          <input name="password" type="password" ref={register} />
+          <input name="usernameOrEmail" type="text" ref={register} placeholder="E-mail ou usuário" />
+          <input name="password" type="password" ref={register} placeholder="Senha" />
           <button onClick={handleSubmit(handleOnSubmit)}>Entrar</button>
         </form>
       </main>
