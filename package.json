@@ -10,6 +10,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "axios": "^0.21.1",
     "next": "9.5.5",
     "react": "17.0.1",
@@ -30,6 +31,7 @@
     "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "babel-plugin-import": "^1.13.3",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-config-standard": "^15.0.0",
