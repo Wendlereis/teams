@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
@@ -12,13 +13,19 @@ const Home: React.FC = () => {
 
   const { handleSubmit, register } = useForm()
 
-  const [createAuthMutation, { isSuccess: isCreateAuthSuccess }] = useMutation(createAuth)
+  const [createAuthMutation, { isSuccess: isCreateAuthSuccess, data: createAuthResponse }] = useMutation(createAuth)
 
   function handleOnSubmit({ password, usernameOrEmail }: IAuthRequest) {
     createAuthMutation({ password, usernameOrEmail })
 
     isCreateAuthSuccess && router.push('/home')
   }
+
+  useEffect(() => {
+    if (createAuthResponse) {
+      localStorage.setItem('@teams:authToken', createAuthResponse.data.token)
+    }
+  }, [createAuthResponse])
 
   return (
     <div>
