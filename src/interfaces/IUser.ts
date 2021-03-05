@@ -12,3 +12,8 @@ export interface IUserResponse {
   email: string
   username: string
 }
+
+export interface IUserProfileRequest {
+  id: string
+  age: number
+}
