@@ -9,3 +9,10 @@ export interface IAuthResponse {
   email: string
   token: string
 }
+
+export type IAuthContextState = IAuthResponse
+
+export interface IAuthContext {
+  authenticatedUser: IAuthContextState
+  handleAuthenticatedUser: (user: IAuthContextState) => void
+}
