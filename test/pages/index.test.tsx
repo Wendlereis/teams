@@ -8,6 +8,7 @@ import userEvent from '@testing-library/user-event'
 import Index from '../../src/pages'
 
 import { withRouter } from '../providers/router'
+import { withAuthProvider } from '../providers/auth'
 
 const server = setupServer(
   rest.post('/auth', (req, res, ctx) => {
@@ -24,7 +25,7 @@ afterAll(() => server.close())
 describe('<Index />', () => {
   describe('Login page', () => {
     test('should succesfully authenticate', async () => {
-      render(withRouter(<Index />))
+      render(withRouter(withAuthProvider(<Index />)))
 
       userEvent.type(screen.getByPlaceholderText(/e-mail ou usuário/i), 'johndoe')
 

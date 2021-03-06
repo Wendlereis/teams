@@ -1,29 +1,37 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { IAuthRequest } from '../interfaces/IAuth'
-
 import { createAuth } from '../api/auth'
+
+import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
+
+import { IAuthRequest } from '../interfaces/IAuth'
 
 const Home: React.FC = () => {
   const router = useRouter()
 
+  const { handleAuthenticatedUser } = useAuthenticatedUser()
+
   const { handleSubmit, register } = useForm()
 
-  const [createAuthMutation, { isSuccess: isCreateAuthSuccess, data: createAuthResponse }] = useMutation(createAuth)
+  const [createAuthMutation, { data: createAuthResponse }] = useMutation(createAuth)
 
   function handleOnSubmit({ password, usernameOrEmail }: IAuthRequest) {
     createAuthMutation({ password, usernameOrEmail })
-
-    isCreateAuthSuccess && router.push('/home')
   }
 
   useEffect(() => {
     if (createAuthResponse) {
-      localStorage.setItem('@teams:authToken', createAuthResponse.data.token)
+      const { data } = createAuthResponse
+
+      localStorage.setItem('@teams:authToken', data.token)
+      handleAuthenticatedUser(data)
+
+      router.push('/home')
     }
   }, [createAuthResponse])
 

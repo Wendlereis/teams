@@ -3,6 +3,8 @@ import { AppProps } from 'next/app'
 
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 
+import AuthProvider from '../context/auth'
+
 import GlobalStyles from '../styles/Global'
 
 const queryCache = new QueryCache()
@@ -18,8 +20,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </AuthProvider>
     </ReactQueryCacheProvider>
   )
 }

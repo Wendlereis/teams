@@ -1,5 +1,9 @@
+import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
+
 const Home: React.FC = () => {
-  return <h1>Home</h1>
+  const { authenticatedUser } = useAuthenticatedUser()
+
+  return <h1>Olá, {authenticatedUser.name}</h1>
 }
 
 export default Home
