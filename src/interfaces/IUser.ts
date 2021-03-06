@@ -1,3 +1,20 @@
+import { IAddress } from './IAddress'
+import { IPhone } from './IPhone'
+import { SystemRoleEnum } from './ISystemRole'
+
+export interface IUser {
+  id: number
+  name: string
+  birth_date: Date
+  email: string
+  username: string
+  password: string
+  address: IAddress
+  phone: IPhone
+  system_role_id?: SystemRoleEnum
+  is_active?: boolean
+}
+
 export interface IUserRequest {
   name: string
   email: string
@@ -11,9 +28,4 @@ export interface IUserResponse {
   name: string
   email: string
   username: string
-}
-
-export interface IUserProfileRequest {
-  id: string
-  age: number
 }
