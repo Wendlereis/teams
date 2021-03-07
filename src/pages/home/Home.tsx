@@ -8,6 +8,10 @@ const Home: React.FC = () => {
     <>
       <h1>Olá, {authenticatedUser.name}</h1>
 
+      <Link href="/create-event">
+        <a>Criar evento</a>
+      </Link>
+
       <Link href="/profile">
         <a>Meu perfil</a>
       </Link>
