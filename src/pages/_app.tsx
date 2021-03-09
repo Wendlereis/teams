@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+
+import Head from 'next/head'
 import { AppProps } from 'next/app'
 
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
@@ -20,14 +22,24 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   }, [])
 
   return (
-    <ReactQueryCacheProvider queryCache={queryCache}>
-      <ThemeProvider>
-        <AuthProvider>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </AuthProvider>
-      </ThemeProvider>
-    </ReactQueryCacheProvider>
+    <>
+      <Head key="custom-head">
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Sans+Pro:wght@400;700;900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      <ReactQueryCacheProvider queryCache={queryCache}>
+        <ThemeProvider>
+          <AuthProvider>
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </AuthProvider>
+        </ThemeProvider>
+      </ReactQueryCacheProvider>
+    </>
   )
 }
 

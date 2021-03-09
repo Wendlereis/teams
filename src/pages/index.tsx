@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { Button, TextField } from '@material-ui/core'
+import { Button, Link, TextField, Typography } from '@material-ui/core'
 
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
@@ -20,11 +20,13 @@ const Home: React.FC = () => {
 
   const { handleAuthenticatedUser } = useAuthenticatedUser()
 
-  const { handleSubmit, register } = useForm()
+  const { handleSubmit, control } = useForm()
 
   const [createAuthMutation, { data: createAuthResponse }] = useMutation(createAuth)
 
   function handleOnSubmit({ password, usernameOrEmail }: IAuthRequest) {
+    console.log({ password, usernameOrEmail })
+
     createAuthMutation({ password, usernameOrEmail })
   }
 
@@ -40,30 +42,59 @@ const Home: React.FC = () => {
   }, [createAuthResponse])
 
   return (
-    <div>
+    <>
       <Head>
         <title>Teams</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <s.Wrapper>
-        <s.SignInForm>
-          <TextField
-            name="usernameOrEmail"
-            ref={register}
-            color="primary"
-            label="E-mail ou usuário"
-            variant="outlined"
-          />
+      <s.Page>
+        <s.Wrapper variant="outlined" elevation={0}>
+          <s.FormHeader>
+            <s.Title variant="h1" color="primary">
+              Login
+            </s.Title>
 
-          <TextField name="password" ref={register} color="primary" label="Senha" variant="outlined" type="password" />
+            <s.Subtitle variant="subtitle1" color="textSecondary">
+              Bem vindo de volta! Faça seu login para entrar.
+            </s.Subtitle>
+          </s.FormHeader>
 
-          <Button variant="contained" color="primary" onClick={handleSubmit(handleOnSubmit)}>
-            Entrar
-          </Button>
-        </s.SignInForm>
-      </s.Wrapper>
-    </div>
+          <s.SignInForm>
+            <Controller
+              name="usernameOrEmail"
+              as={TextField}
+              control={control}
+              variant="outlined"
+              color="primary"
+              label="E-mail ou usuário"
+              size="small"
+              defaultValue=""
+            />
+
+            <Controller
+              name="password"
+              as={TextField}
+              control={control}
+              variant="outlined"
+              color="primary"
+              label="Senha"
+              type="password"
+              size="small"
+              defaultValue=""
+            />
+
+            <Button variant="contained" color="primary" onClick={handleSubmit(handleOnSubmit)}>
+              Entrar
+            </Button>
+
+            <s.Caption variant="caption" color="textSecondary">
+              Ainda não tem uma conta? <Link href="/signup">Cadastre-se</Link>
+            </s.Caption>
+          </s.SignInForm>
+        </s.Wrapper>
+      </s.Page>
+    </>
   )
 }
 
