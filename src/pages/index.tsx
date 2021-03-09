@@ -5,11 +5,15 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { createAuth } from '../api/auth'
+import { Button, TextField } from '@material-ui/core'
 
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
+import { createAuth } from '../api/auth'
+
 import { IAuthRequest } from '../interfaces/IAuth'
+
+import * as s from './styles'
 
 const Home: React.FC = () => {
   const router = useRouter()
@@ -42,15 +46,23 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>Teams</h1>
+      <s.Wrapper>
+        <s.SignInForm>
+          <TextField
+            name="usernameOrEmail"
+            ref={register}
+            color="primary"
+            label="E-mail ou usuário"
+            variant="outlined"
+          />
 
-        <form>
-          <input name="usernameOrEmail" type="text" ref={register} placeholder="E-mail ou usuário" />
-          <input name="password" type="password" ref={register} placeholder="Senha" />
-          <button onClick={handleSubmit(handleOnSubmit)}>Entrar</button>
-        </form>
-      </main>
+          <TextField name="password" ref={register} color="primary" label="Senha" variant="outlined" type="password" />
+
+          <Button variant="contained" color="primary" onClick={handleSubmit(handleOnSubmit)}>
+            Entrar
+          </Button>
+        </s.SignInForm>
+      </s.Wrapper>
     </div>
   )
 }

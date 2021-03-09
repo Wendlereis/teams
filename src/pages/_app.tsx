@@ -5,6 +5,7 @@ import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 
 import AuthProvider from '../context/auth'
 
+import { ThemeProvider } from '../styles/Theme'
 import GlobalStyles from '../styles/Global'
 
 const queryCache = new QueryCache()
@@ -20,10 +21,12 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <ReactQueryCacheProvider queryCache={queryCache}>
-      <AuthProvider>
-        <GlobalStyles />
-        <Component {...pageProps} />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </AuthProvider>
+      </ThemeProvider>
     </ReactQueryCacheProvider>
   )
 }
