@@ -9,17 +9,34 @@ export const ThemeProvider: FC = ({ children }) => {
       h1: {
         fontSize: '48px',
         lineHeight: '52px',
-        fontWeight: 900,
+      },
+      h2: {
+        fontSize: '40px',
+        lineHeight: '48px',
+      },
+      h3: {
+        fontSize: '32px',
+        lineHeight: '40px',
+      },
+      h4: {
+        fontSize: '24px',
+        lineHeight: '32px',
+      },
+      h5: {
+        fontSize: '20px',
+        lineHeight: '28px',
       },
       body1: {
         fontSize: '16px',
         lineHeight: '24px',
-        fontWeight: 500,
+      },
+      body2: {
+        fontSize: '14px',
+        lineHeight: '20px',
       },
       button: {
         fontSize: '16px',
         lineHeight: '24px',
-        fontWeight: 500,
         textTransform: 'capitalize',
       },
     },
@@ -34,17 +51,20 @@ export const ThemeProvider: FC = ({ children }) => {
         default: '#f2f2f2',
         paper: '#ffffff',
       },
+      text: {
+        primary: '#00000085',
+        secondary: '#00000060',
+      },
     },
     overrides: {
       MuiButton: {
         root: {
-          borderRadius: '52px',
-          padding: '12px 24px',
+          borderRadius: '8px',
         },
       },
       MuiOutlinedInput: {
         root: {
-          borderRadius: '52px',
+          borderRadius: '8px',
         },
       },
       MuiPaper: {

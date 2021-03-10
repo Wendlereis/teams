@@ -21,7 +21,7 @@ export const Wrapper = styled(Paper)`
   padding: 32px 24px 24px;
 
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
 `
 
 export const Title = styled(Typography)`
@@ -29,7 +29,6 @@ export const Title = styled(Typography)`
 `
 
 export const Subtitle = styled(Typography)`
-  margin-top: 8px;
   font-weight: 400;
 `
 
@@ -42,11 +41,11 @@ export const SignInForm = styled.form`
   flex-direction: column;
 
   .MuiTextField-root + .MuiTextField-root {
-    margin-top: 8px;
+    margin-top: 16px;
   }
 
   .MuiButton-root {
-    margin-top: 32px;
+    margin-top: 24px;
   }
 `
 

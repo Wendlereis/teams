@@ -51,12 +51,12 @@ const Home: React.FC = () => {
       <s.Page>
         <s.Wrapper variant="outlined" elevation={0}>
           <s.FormHeader>
-            <s.Title variant="h1" color="primary">
-              Login
+            <s.Title variant="h3" color="textPrimary">
+              Bem vindo!
             </s.Title>
 
             <s.Subtitle variant="subtitle1" color="textSecondary">
-              Bem vindo de volta! Faça seu login para entrar.
+              Faça seu login para entrar.
             </s.Subtitle>
           </s.FormHeader>
 
