@@ -2,10 +2,12 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
+import styled from 'styled-components'
+
 import { useForm, Controller } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { Button, Link, TextField, Typography } from '@material-ui/core'
+import { Button, Link, Paper, TextField, Typography } from '@material-ui/core'
 
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
@@ -13,9 +15,7 @@ import { createAuth } from '../api/auth'
 
 import { IAuthRequest } from '../interfaces/IAuth'
 
-import * as s from './styles'
-
-const Home: React.FC = () => {
+const Index: React.FC = () => {
   const router = useRouter()
 
   const { handleAuthenticatedUser } = useAuthenticatedUser()
@@ -48,19 +48,19 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <s.Page>
-        <s.Wrapper variant="outlined" elevation={0}>
-          <s.FormHeader>
-            <s.Title variant="h3" color="textPrimary">
+      <Page>
+        <Wrapper variant="outlined" elevation={0}>
+          <FormHeader>
+            <Title variant="h3" color="textPrimary">
               Bem vindo!
-            </s.Title>
+            </Title>
 
-            <s.Subtitle variant="subtitle1" color="textSecondary">
+            <Subtitle variant="subtitle1" color="textSecondary">
               Faça seu login para entrar.
-            </s.Subtitle>
-          </s.FormHeader>
+            </Subtitle>
+          </FormHeader>
 
-          <s.SignInForm>
+          <SignInForm>
             <Controller
               name="usernameOrEmail"
               as={TextField}
@@ -88,14 +88,67 @@ const Home: React.FC = () => {
               Entrar
             </Button>
 
-            <s.Caption variant="caption" color="textSecondary">
+            <Caption variant="caption" color="textSecondary">
               Ainda não tem uma conta? <Link href="/signup">Cadastre-se</Link>
-            </s.Caption>
-          </s.SignInForm>
-        </s.Wrapper>
-      </s.Page>
+            </Caption>
+          </SignInForm>
+        </Wrapper>
+      </Page>
     </>
   )
 }
 
-export default Home
+export default Index
+
+export const Page = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  height: 100vh;
+
+  ${({ theme }) => `
+    background-color: ${theme.palette.secondary.main}
+  `}
+`
+
+export const Wrapper = styled(Paper)`
+  padding: 32px 24px 24px;
+
+  width: 100%;
+  max-width: 350px;
+`
+
+export const Title = styled(Typography)`
+  font-weight: 900;
+`
+
+export const Subtitle = styled(Typography)`
+  font-weight: 400;
+`
+
+export const FormHeader = styled.header`
+  margin-bottom: 32px;
+`
+
+export const SignInForm = styled.form`
+  display: flex;
+  flex-direction: column;
+
+  .MuiTextField-root + .MuiTextField-root {
+    margin-top: 16px;
+  }
+
+  .MuiButton-root {
+    margin-top: 24px;
+  }
+`
+
+export const Caption = styled(Typography)`
+  margin-top: 16px;
+  text-align: center;
+`
