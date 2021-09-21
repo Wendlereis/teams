@@ -25,8 +25,6 @@ const Index: React.FC = () => {
   const [createAuthMutation, { data: createAuthResponse }] = useMutation(createAuth)
 
   function handleOnSubmit({ password, usernameOrEmail }: IAuthRequest) {
-    console.log({ password, usernameOrEmail })
-
     createAuthMutation({ password, usernameOrEmail })
   }
 
@@ -62,6 +60,7 @@ const Index: React.FC = () => {
 
           <SignInForm>
             <Controller
+              id="usernameOrEmail"
               name="usernameOrEmail"
               as={TextField}
               control={control}
@@ -73,6 +72,7 @@ const Index: React.FC = () => {
             />
 
             <Controller
+              id="password"
               name="password"
               as={TextField}
               control={control}
