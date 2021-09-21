@@ -1,14 +1,14 @@
-version: '2.1'
+version: 2.1
 orbs:
-  node: circleci/node@4.2.0
+  node: circleci/node@4.7.0
 jobs:
   test:
-    executor: node/default
+    docker:
+      - image: cimg/base:stable
     steps:
-      - checkout
       - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: yarn
+          pkg-manager: yarn 
+          override-ci-command: yarn 
       - run: yarn test:coverage
 workflows:
   test:
