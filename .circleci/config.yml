@@ -1,17 +1,11 @@
 version: 2.1
 orbs:
   node: circleci/node@4.7.0
-jobs:
-  test:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - node/install-packages:
-          app-dir: ./ 
-          pkg-manager: yarn 
-          override-ci-command: yarn 
-      - run: yarn test:coverage
+  
 workflows:
-  test:
-    jobs:
-      - test
+    test:
+      jobs:
+        - node/test:
+            pkg-manager: yarn 
+            run-command: test:coverage 
+            version: '14.17.6' 
