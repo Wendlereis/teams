@@ -12,7 +12,7 @@ const Profile: React.FC = () => {
 
   const { authenticatedUser } = useAuthenticatedUser()
 
-  const { data, isLoading, error } = useQuery('user', () => getUserById(authenticatedUser.id))
+  const { data: getUserResponse, isLoading, error } = useQuery('user', () => getUserById(authenticatedUser.id))
 
   const [updateUserMutation] = useMutation(updateUser)
 
@@ -35,16 +35,30 @@ const Profile: React.FC = () => {
     <main>
       <h1>Perfil</h1>
 
-      <input name="name" type="text" ref={register} placeholder="Nome" disabled={true} defaultValue={data?.data.name} />
+      <input
+        name="name"
+        type="text"
+        ref={register}
+        placeholder="Nome"
+        disabled={true}
+        defaultValue={getUserResponse?.data.name}
+      />
 
-      <input name="age" type="text" ref={register} placeholder="Idade" disabled={true} defaultValue={data?.data.age} />
+      <input
+        name="age"
+        type="text"
+        ref={register}
+        placeholder="Idade"
+        disabled={true}
+        defaultValue={getUserResponse?.data.age}
+      />
 
       <input
         name="birth_date"
         type="text"
         ref={register}
         placeholder="Data de nascimento"
-        defaultValue={data?.data.birth_date}
+        defaultValue={getUserResponse?.data.birth_date}
       />
 
       <input
@@ -52,7 +66,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Rua"
-        defaultValue={data?.data.address.street}
+        defaultValue={getUserResponse?.data.address.street}
       />
 
       <input
@@ -60,7 +74,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Número"
-        defaultValue={data?.data.address.number}
+        defaultValue={getUserResponse?.data.address.number}
       />
 
       <input
@@ -68,7 +82,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Complemento"
-        defaultValue={data?.data.address.complement}
+        defaultValue={getUserResponse?.data.address.complement}
       />
 
       <input
@@ -76,7 +90,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Bairro"
-        defaultValue={data?.data.address.neighbourhood}
+        defaultValue={getUserResponse?.data.address.neighbourhood}
       />
 
       <input
@@ -84,7 +98,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Cidade"
-        defaultValue={data?.data.address.city}
+        defaultValue={getUserResponse?.data.address.city}
       />
 
       <input
@@ -92,7 +106,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Estado"
-        defaultValue={data?.data.address.state}
+        defaultValue={getUserResponse?.data.address.state}
       />
 
       <input
@@ -100,7 +114,7 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Telefone fixo"
-        defaultValue={data?.data.phone.landline_phone}
+        defaultValue={getUserResponse?.data.phone.landline_phone}
       />
 
       <input
@@ -108,12 +122,18 @@ const Profile: React.FC = () => {
         type="text"
         ref={register}
         placeholder="Celular"
-        defaultValue={data?.data.phone.mobile_phone}
+        defaultValue={getUserResponse?.data.phone.mobile_phone}
       />
 
-      <input name="email" type="text" ref={register} placeholder="E-mail" defaultValue={data?.data.email} />
+      <input name="email" type="text" ref={register} placeholder="E-mail" defaultValue={getUserResponse?.data.email} />
 
-      <input name="username" type="text" ref={register} placeholder="Usuário" defaultValue={data?.data.username} />
+      <input
+        name="username"
+        type="text"
+        ref={register}
+        placeholder="Usuário"
+        defaultValue={getUserResponse?.data.username}
+      />
 
       <input name="password" type="password" ref={register} placeholder="Senha" />
 
