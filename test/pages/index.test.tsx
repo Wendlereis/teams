@@ -2,13 +2,21 @@ import '@testing-library/jest-dom'
 
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { render, screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import Index from '../../src/pages'
 
-import { withRouter } from '../providers/router'
-import { withAuthProvider } from '../providers/auth'
+import render from '../utils/render'
+
+const mockPush = jest.fn()
+
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: { options: 'integrations' },
+    push: mockPush,
+  }),
+}))
 
 const server = setupServer(
   rest.post('/auth', (req, res, ctx) => {
@@ -16,22 +24,23 @@ const server = setupServer(
   })
 )
 
-beforeAll(() => server.listen())
-
-afterEach(() => server.resetHandlers())
-
-afterAll(() => server.close())
-
 describe('<Index />', () => {
   describe('Login page', () => {
-    test('should succesfully authenticate', async () => {
-      render(withRouter(withAuthProvider(<Index />)))
+    server.listen()
 
-      userEvent.type(screen.getByPlaceholderText(/e-mail ou usuário/i), 'johndoe')
+    test('should authenticate succesfully', async () => {
+      render(<Index />)
 
-      userEvent.type(screen.getByPlaceholderText(/senha/i), 'johndoe')
+      userEvent.type(screen.getByLabelText('E-mail ou usuário'), 'johndoe')
+
+      userEvent.type(screen.getByLabelText('Senha'), 'johndoe')
 
       userEvent.click(screen.getByRole('button', { name: /entrar/i }))
+
+      await waitFor(() => {
+        expect(mockPush).toBeCalled()
+        expect(mockPush).toBeCalledWith('/home')
+      })
     })
   })
 })
