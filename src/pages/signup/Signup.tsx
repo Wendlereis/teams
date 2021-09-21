@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { IUserRequest } from '../../interfaces/IUser'
+import { ICreateUserRequest } from '../../interfaces/IUser'
 
 import { createUser } from '../../api/user'
 import { useEffect } from 'react'
@@ -15,7 +15,7 @@ const Signup: React.FC = () => {
 
   const [createUserMutation, { isSuccess: isCreateUserSuccess }] = useMutation(createUser)
 
-  function handleOnSubmit(user: IUserRequest) {
+  function handleOnSubmit(user: ICreateUserRequest) {
     createUserMutation({ ...user, system_role_id: 1 })
   }
 
