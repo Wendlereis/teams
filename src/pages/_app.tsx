@@ -3,6 +3,9 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 
+import createCache from '@emotion/cache'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+
 import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 
 import AuthProvider from '../context/auth'
@@ -12,7 +15,13 @@ import GlobalStyles from '../styles/Global'
 
 const queryCache = new QueryCache()
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const clientSideEmotionCache = createCache({ key: 'css' })
+
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache
+}
+
+const MyApp: React.FC<MyAppProps> = ({ Component, emotionCache = clientSideEmotionCache, pageProps }) => {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side')
 
@@ -22,7 +31,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   }, [])
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head key="custom-head">
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
@@ -39,7 +48,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           </AuthProvider>
         </ThemeProvider>
       </ReactQueryCacheProvider>
-    </>
+    </CacheProvider>
   )
 }
 
