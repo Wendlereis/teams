@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { useForm, Controller } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { Button, Link, Paper, TextField, Typography } from '@material-ui/core'
+import { Button, Link, Paper, TextField, Typography } from '@mui/material'
 
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
