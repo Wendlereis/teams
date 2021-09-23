@@ -80,6 +80,23 @@ export const ThemeProvider: FC = ({ children }) => {
           },
         },
       },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            padding: '16px',
+            borderRadius: '8px',
+            marginBottom: '8px',
+          },
+        },
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            minWidth: '0px',
+            marginRight: '16px',
+          },
+        },
+      },
     },
   })
 

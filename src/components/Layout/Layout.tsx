@@ -1,7 +1,17 @@
 import { useState } from 'react'
 
-import { MenuOpenRounded, MenuRounded } from '@mui/icons-material'
-import { IconButton, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { InboxRounded, MenuOpenRounded, MenuRounded } from '@mui/icons-material'
+import {
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 
 import { Props } from './types'
 
@@ -35,9 +45,48 @@ function Layout({ children }: Props): JSX.Element {
 
       <S.Main>{children}</S.Main>
 
-      <S.Drawer open={drawerOpen} variant={drawerVariant} onClose={handleCloseDrawer}>
-        <Toolbar />
-        <Typography>Blah</Typography>
+      <S.Drawer
+        open={drawerOpen}
+        elevation={0}
+        variant={drawerVariant}
+        onClose={handleCloseDrawer}
+        PaperProps={{ variant: 'outlined' }}
+      >
+        <S.DrawerTitle variant="h6">Teams</S.DrawerTitle>
+
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <InboxRounded />
+            </ListItemIcon>
+
+            <ListItemText>Item 1</ListItemText>
+          </ListItem>
+
+          <ListItem selected>
+            <ListItemIcon>
+              <InboxRounded />
+            </ListItemIcon>
+
+            <ListItemText>Item 2</ListItemText>
+          </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+              <InboxRounded />
+            </ListItemIcon>
+
+            <ListItemText>Item 3</ListItemText>
+          </ListItem>
+
+          <ListItem button>
+            <ListItemIcon>
+              <InboxRounded />
+            </ListItemIcon>
+
+            <ListItemText>Item 4</ListItemText>
+          </ListItem>
+        </List>
       </S.Drawer>
     </>
   )
