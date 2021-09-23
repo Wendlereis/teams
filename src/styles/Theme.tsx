@@ -1,9 +1,11 @@
 import { FC } from 'react'
-import { ThemeProvider as StyledTheme } from 'styled-components'
-import { ThemeProvider as MuiTheme, createMuiTheme, StylesProvider } from '@material-ui/core'
+
+import { ThemeProvider as EmotionProvider } from '@emotion/react'
+
+import { ThemeProvider as MuiTheme, createTheme, adaptV4Theme } from '@mui/material'
 
 export const ThemeProvider: FC = ({ children }) => {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     typography: {
       fontFamily: 'Lato',
       h1: {
@@ -56,30 +58,34 @@ export const ThemeProvider: FC = ({ children }) => {
         secondary: '#00000060',
       },
     },
-    overrides: {
+    components: {
       MuiButton: {
-        root: {
-          borderRadius: '8px',
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
+          },
         },
       },
       MuiOutlinedInput: {
-        root: {
-          borderRadius: '8px',
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
+          },
         },
       },
       MuiPaper: {
-        rounded: {
-          borderRadius: '16px',
+        styleOverrides: {
+          rounded: {
+            borderRadius: '16px',
+          },
         },
       },
     },
   })
 
   return (
-    <StylesProvider injectFirst>
-      <MuiTheme theme={theme}>
-        <StyledTheme theme={theme}>{children}</StyledTheme>
-      </MuiTheme>
-    </StylesProvider>
+    <MuiTheme theme={theme}>
+      <EmotionProvider theme={theme}>{children}</EmotionProvider>
+    </MuiTheme>
   )
 }
