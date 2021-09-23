@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { ThemeProvider as EmotionProvider } from '@emotion/react'
 
-import { ThemeProvider as MuiTheme, createTheme, adaptV4Theme, th } from '@mui/material'
+import { ThemeProvider as MuiTheme, createTheme, adaptV4Theme } from '@mui/material'
 
 export const ThemeProvider: FC = ({ children }) => {
   const theme = createTheme(
