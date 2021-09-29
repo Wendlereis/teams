@@ -2,16 +2,9 @@ import { FC, useState } from 'react'
 
 import { InboxRounded, MenuOpenRounded, MenuRounded } from '@mui/icons-material'
 
-import {
-  Avatar,
-  IconButton,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material'
+import { List, ListItemIcon, ListItemText, useMediaQuery, useTheme } from '@mui/material'
+
+import Appbar, { AppbarButton } from '../Appbar'
 
 import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
@@ -19,13 +12,13 @@ import * as S from './styles'
 
 const Layout: FC = ({ children }) => {
   const { breakpoints } = useTheme()
-  const matches = useMediaQuery(breakpoints.up('md'))
+  const isDesktop = useMediaQuery(breakpoints.up('md'))
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const { authenticatedUser } = useAuthenticatedUser()
 
-  const drawerVariant = matches ? 'permanent' : 'temporary'
+  const drawerVariant = isDesktop ? 'permanent' : 'temporary'
 
   function handleToggleDrawer() {
     setDrawerOpen(!drawerOpen)
@@ -35,25 +28,18 @@ const Layout: FC = ({ children }) => {
     setDrawerOpen(false)
   }
 
+  function getAppbarButton() {
+    const buttonOptions: AppbarButton = {
+      icon: drawerOpen ? <MenuOpenRounded /> : <MenuRounded />,
+      action: handleToggleDrawer,
+    }
+
+    return !isDesktop ? buttonOptions : undefined
+  }
+
   return (
     <S.Wrapper>
-      <S.AppBar variant="outlined" position="fixed" color="default">
-        <S.Toolbar>
-          {!matches && (
-            <IconButton size="large" onClick={handleToggleDrawer}>
-              {drawerOpen ? <MenuOpenRounded /> : <MenuRounded />}
-            </IconButton>
-          )}
-
-          <S.Profile>
-            <Typography color="textSecondary">{authenticatedUser.name}</Typography>
-
-            <Avatar>
-              <Typography color="inherit">J</Typography>
-            </Avatar>
-          </S.Profile>
-        </S.Toolbar>
-      </S.AppBar>
+      <Appbar greeting={authenticatedUser.name} button={getAppbarButton()} />
 
       <S.Drawer
         open={drawerOpen}
