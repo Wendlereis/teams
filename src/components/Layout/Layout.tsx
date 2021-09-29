@@ -1,27 +1,29 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
 import { InboxRounded, MenuOpenRounded, MenuRounded } from '@mui/icons-material'
+
 import {
+  Avatar,
   IconButton,
   List,
-  ListItem,
   ListItemIcon,
   ListItemText,
-  Toolbar,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
 
-import { Props } from './types'
+import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
 import * as S from './styles'
 
-function Layout({ children }: Props): JSX.Element {
+const Layout: FC = ({ children }) => {
   const { breakpoints } = useTheme()
   const matches = useMediaQuery(breakpoints.up('md'))
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  const { authenticatedUser } = useAuthenticatedUser()
 
   const drawerVariant = matches ? 'permanent' : 'temporary'
 
@@ -34,16 +36,24 @@ function Layout({ children }: Props): JSX.Element {
   }
 
   return (
-    <>
-      <S.AppBar position="fixed">
-        <Toolbar>
-          <IconButton size="large" color="secondary" onClick={handleToggleDrawer}>
-            {drawerOpen ? <MenuOpenRounded /> : <MenuRounded />}
-          </IconButton>
-        </Toolbar>
-      </S.AppBar>
+    <S.Wrapper>
+      <S.AppBar variant="outlined" position="fixed" color="default">
+        <S.Toolbar>
+          {!matches && (
+            <IconButton size="large" onClick={handleToggleDrawer}>
+              {drawerOpen ? <MenuOpenRounded /> : <MenuRounded />}
+            </IconButton>
+          )}
 
-      <S.Main>{children}</S.Main>
+          <S.Profile>
+            <Typography color="textSecondary">{authenticatedUser.name}</Typography>
+
+            <Avatar>
+              <Typography color="inherit">J</Typography>
+            </Avatar>
+          </S.Profile>
+        </S.Toolbar>
+      </S.AppBar>
 
       <S.Drawer
         open={drawerOpen}
@@ -51,44 +61,47 @@ function Layout({ children }: Props): JSX.Element {
         variant={drawerVariant}
         onClose={handleCloseDrawer}
         PaperProps={{ variant: 'outlined' }}
+        anchor="left"
       >
         <S.DrawerTitle variant="h6">Teams</S.DrawerTitle>
 
         <List>
-          <ListItem button>
+          <S.ListItem>
             <ListItemIcon>
               <InboxRounded />
             </ListItemIcon>
 
-            <ListItemText>Item 1</ListItemText>
-          </ListItem>
+            <ListItemText>Inicio</ListItemText>
+          </S.ListItem>
 
-          <ListItem selected>
+          <S.ListItem selected>
             <ListItemIcon>
               <InboxRounded />
             </ListItemIcon>
 
-            <ListItemText>Item 2</ListItemText>
-          </ListItem>
+            <ListItemText>Eventos</ListItemText>
+          </S.ListItem>
 
-          <ListItem button>
+          <S.ListItem>
             <ListItemIcon>
               <InboxRounded />
             </ListItemIcon>
 
-            <ListItemText>Item 3</ListItemText>
-          </ListItem>
+            <ListItemText>Times</ListItemText>
+          </S.ListItem>
 
-          <ListItem button>
+          <S.ListItem>
             <ListItemIcon>
               <InboxRounded />
             </ListItemIcon>
 
-            <ListItemText>Item 4</ListItemText>
-          </ListItem>
+            <ListItemText>Usuarios</ListItemText>
+          </S.ListItem>
         </List>
       </S.Drawer>
-    </>
+
+      <S.Main>{children}</S.Main>
+    </S.Wrapper>
   )
 }
 
