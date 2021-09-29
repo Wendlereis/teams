@@ -8,7 +8,7 @@ function Appbar({ greeting, button }: Props): JSX.Element {
   const greetingFirstLetter = greeting.substring(0, 1)
 
   return (
-    <S.AppBar variant="outlined" position="fixed" color="default">
+    <S.AppBar elevation={0} variant="outlined" position="fixed" color="default">
       <S.Toolbar>
         {button && (
           <IconButton size="large" onClick={button.action}>
