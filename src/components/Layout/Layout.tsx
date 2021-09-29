@@ -1,10 +1,11 @@
 import { FC, useState } from 'react'
 
-import { InboxRounded, MenuOpenRounded, MenuRounded } from '@mui/icons-material'
+import { MenuOpenRounded, MenuRounded } from '@mui/icons-material'
 
-import { List, ListItemIcon, ListItemText, useMediaQuery, useTheme } from '@mui/material'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 import Appbar, { AppbarButton } from '../Appbar'
+import NavigationDrawer from '../NavigationDrawer'
 
 import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
@@ -41,50 +42,7 @@ const Layout: FC = ({ children }) => {
     <S.Wrapper>
       <Appbar greeting={authenticatedUser.name} button={getAppbarButton()} />
 
-      <S.Drawer
-        open={drawerOpen}
-        elevation={0}
-        variant={drawerVariant}
-        onClose={handleCloseDrawer}
-        PaperProps={{ variant: 'outlined' }}
-        anchor="left"
-      >
-        <S.DrawerTitle variant="h6">Teams</S.DrawerTitle>
-
-        <List>
-          <S.ListItem>
-            <ListItemIcon>
-              <InboxRounded />
-            </ListItemIcon>
-
-            <ListItemText>Inicio</ListItemText>
-          </S.ListItem>
-
-          <S.ListItem selected>
-            <ListItemIcon>
-              <InboxRounded />
-            </ListItemIcon>
-
-            <ListItemText>Eventos</ListItemText>
-          </S.ListItem>
-
-          <S.ListItem>
-            <ListItemIcon>
-              <InboxRounded />
-            </ListItemIcon>
-
-            <ListItemText>Times</ListItemText>
-          </S.ListItem>
-
-          <S.ListItem>
-            <ListItemIcon>
-              <InboxRounded />
-            </ListItemIcon>
-
-            <ListItemText>Usuarios</ListItemText>
-          </S.ListItem>
-        </List>
-      </S.Drawer>
+      <NavigationDrawer open={drawerOpen} variant={drawerVariant} onClose={handleCloseDrawer} />
 
       <S.Main>{children}</S.Main>
     </S.Wrapper>
