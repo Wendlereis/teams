@@ -1,10 +1,30 @@
-import { InboxRounded } from '@mui/icons-material'
+import { DashboardRounded, EventRounded, GroupRounded, WorkspacesRounded } from '@mui/icons-material'
 
-import { List, ListItemIcon, ListItemText } from '@mui/material'
+import List, { ListItem } from '../List'
 
 import { Props } from './types'
 
 import * as S from './styles'
+
+const navigationItems: ListItem[] = [
+  {
+    icon: <DashboardRounded />,
+    text: 'Início',
+    selected: true,
+  },
+  {
+    icon: <EventRounded />,
+    text: 'Eventos',
+  },
+  {
+    icon: <WorkspacesRounded />,
+    text: 'Times',
+  },
+  {
+    icon: <GroupRounded />,
+    text: 'Usuarios',
+  },
+]
 
 function NavigationDrawer({ open, variant, onClose }: Props): JSX.Element {
   return (
@@ -18,39 +38,7 @@ function NavigationDrawer({ open, variant, onClose }: Props): JSX.Element {
     >
       <S.DrawerTitle variant="h6">Teams</S.DrawerTitle>
 
-      <List>
-        <S.ListItem>
-          <ListItemIcon>
-            <InboxRounded />
-          </ListItemIcon>
-
-          <ListItemText>Inicio</ListItemText>
-        </S.ListItem>
-
-        <S.ListItem selected>
-          <ListItemIcon>
-            <InboxRounded />
-          </ListItemIcon>
-
-          <ListItemText>Eventos</ListItemText>
-        </S.ListItem>
-
-        <S.ListItem>
-          <ListItemIcon>
-            <InboxRounded />
-          </ListItemIcon>
-
-          <ListItemText>Times</ListItemText>
-        </S.ListItem>
-
-        <S.ListItem>
-          <ListItemIcon>
-            <InboxRounded />
-          </ListItemIcon>
-
-          <ListItemText>Usuarios</ListItemText>
-        </S.ListItem>
-      </List>
+      <List items={navigationItems} />
     </S.Drawer>
   )
 }
