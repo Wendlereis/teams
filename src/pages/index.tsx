@@ -4,10 +4,12 @@ import { useRouter } from 'next/router'
 
 import styled from '@emotion/styled'
 
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { Button, Link, Paper, TextField, Typography } from '@mui/material'
+import { Button, Link, Paper, Typography } from '@mui/material'
+
+import Input from '../components/Input'
 
 import useAuthenticatedUser from '../hooks/useAuthenticatedUser'
 
@@ -16,11 +18,11 @@ import { createAuth } from '../api/auth'
 import { IAuthRequest } from '../interfaces/IAuth'
 
 const Index: React.FC = () => {
+  const methods = useForm()
+
   const router = useRouter()
 
   const { handleAuthenticatedUser } = useAuthenticatedUser()
-
-  const { handleSubmit, control } = useForm()
 
   const [createAuthMutation, { data: createAuthResponse }] = useMutation(createAuth)
 
@@ -58,40 +60,21 @@ const Index: React.FC = () => {
             </Subtitle>
           </FormHeader>
 
-          <SignInForm>
-            <Controller
-              id="usernameOrEmail"
-              name="usernameOrEmail"
-              as={TextField}
-              control={control}
-              variant="outlined"
-              color="primary"
-              label="E-mail ou usuário"
-              size="small"
-              defaultValue=""
-            />
+          <FormProvider {...methods}>
+            <SignInForm>
+              <Input name="usernameOrEmail" label="E-mail ou usuário" />
 
-            <Controller
-              id="password"
-              name="password"
-              as={TextField}
-              control={control}
-              variant="outlined"
-              color="primary"
-              label="Senha"
-              type="password"
-              size="small"
-              defaultValue=""
-            />
+              <Input name="password" label="Senha" />
 
-            <Button variant="contained" color="primary" onClick={handleSubmit(handleOnSubmit)}>
-              Entrar
-            </Button>
+              <Button variant="contained" color="primary" onClick={methods.handleSubmit(handleOnSubmit)}>
+                Entrar
+              </Button>
 
-            <Caption variant="caption" color="textSecondary">
-              Ainda não tem uma conta? <Link href="/signup">Cadastre-se</Link>
-            </Caption>
-          </SignInForm>
+              <Caption variant="caption" color="textSecondary">
+                Ainda não tem uma conta? <Link href="/signup">Cadastre-se</Link>
+              </Caption>
+            </SignInForm>
+          </FormProvider>
         </Wrapper>
       </Page>
     </>
