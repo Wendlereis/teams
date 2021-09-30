@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { ThemeProvider as EmotionProvider } from '@emotion/react'
 
-import { ThemeProvider as MuiTheme, createTheme, adaptV4Theme } from '@mui/material'
+import { ThemeProvider as MuiTheme, createTheme } from '@mui/material'
 
 export const ThemeProvider: FC = ({ children }) => {
   const theme = createTheme({
@@ -50,7 +50,7 @@ export const ThemeProvider: FC = ({ children }) => {
         main: '#5fa8d3',
       },
       background: {
-        default: '#f2f2f2',
+        default: '#f7f7f7',
         paper: '#ffffff',
       },
       text: {
@@ -59,6 +59,13 @@ export const ThemeProvider: FC = ({ children }) => {
       },
     },
     components: {
+      MuiAppBar: {
+        styleOverrides: {
+          colorDefault: {
+            backgroundColor: '#f7f7f7',
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: {
@@ -77,6 +84,22 @@ export const ThemeProvider: FC = ({ children }) => {
         styleOverrides: {
           rounded: {
             borderRadius: '16px',
+          },
+        },
+      },
+      MuiListItem: {
+        styleOverrides: {
+          root: {
+            borderRadius: '8px',
+            marginBottom: '8px',
+          },
+        },
+      },
+      MuiListItemIcon: {
+        styleOverrides: {
+          root: {
+            minWidth: '0px',
+            marginRight: '16px',
           },
         },
       },
