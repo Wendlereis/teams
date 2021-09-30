@@ -1,10 +1,6 @@
 import styled from '@emotion/styled'
 
-import { List as MuiList, ListItem as MuiListItem } from '@mui/material'
-
-export const List = styled(MuiList)`
-  margin-top: 16px;
-`
+import { ListItem as MuiListItem } from '@mui/material'
 
 export const ListItem = styled(MuiListItem)`
   ${({ theme: { palette } }) => `

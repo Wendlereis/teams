@@ -51,3 +51,7 @@ export const ListItem = styled(MuiListItem)`
     }
   `}
 `
+
+export const Content = styled.main`
+  margin-top: 16px;
+`

@@ -38,7 +38,9 @@ function NavigationDrawer({ open, variant, onClose }: Props): JSX.Element {
     >
       <S.DrawerTitle variant="h6">Teams</S.DrawerTitle>
 
-      <List items={navigationItems} />
+      <S.Content>
+        <List items={navigationItems} />
+      </S.Content>
     </S.Drawer>
   )
 }
