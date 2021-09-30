@@ -17,7 +17,7 @@ export const Toolbar = styled(MuiToolbar)`
       display: flex;
       justify-content: space-between;
 
-      ${breakpoints.up('sm')} {
+      ${breakpoints.up('md')} {
         flex-direction: row-reverse;
       }
   `}

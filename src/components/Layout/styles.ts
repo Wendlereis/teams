@@ -14,7 +14,7 @@ export const Main = styled.main`
 
     background-color: ${palette.background.default};
 
-    ${breakpoints.up('sm')} {
+    ${breakpoints.up('md')} {
       padding-top: 64px;
     }
   `}
