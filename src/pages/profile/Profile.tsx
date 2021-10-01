@@ -30,13 +30,13 @@ const Profile: React.FC = () => {
     })
   }
 
-  if (isLoading) {
-    return <h2>Carregando perfil</h2>
-  }
+  // if (isLoading) {
+  //   return <h2>Carregando perfil</h2>
+  // }
 
-  if (error) {
-    return <h2>Erro ao carregar perfil</h2>
-  }
+  // if (error) {
+  //   return <h2>Erro ao carregar perfil</h2>
+  // }
 
   return (
     <Layout>
@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
                         label="Nome completo"
                         options={{
                           disabled: true,
-                          defaultValue: String(getUserResponse?.data.name),
+                          defaultValue: String(getUserResponse?.data?.name),
                         }}
                       />
                     </Grid>
@@ -74,7 +74,7 @@ const Profile: React.FC = () => {
                         label="Idade"
                         options={{
                           disabled: true,
-                          defaultValue: String(getUserResponse?.data.age),
+                          defaultValue: String(getUserResponse?.data?.age),
                         }}
                       />
                     </Grid>
@@ -84,7 +84,7 @@ const Profile: React.FC = () => {
                         name="birth_date"
                         label="Data de aniversário"
                         options={{
-                          defaultValue: getUserResponse?.data.birth_date,
+                          defaultValue: getUserResponse?.data?.birth_date,
                         }}
                       />
                     </Grid>
@@ -102,7 +102,7 @@ const Profile: React.FC = () => {
                         name="address.street"
                         label="Rua"
                         options={{
-                          defaultValue: getUserResponse?.data.address.street,
+                          defaultValue: getUserResponse?.data?.address.street,
                         }}
                       />
                     </Grid>
@@ -112,7 +112,7 @@ const Profile: React.FC = () => {
                         name="address.number"
                         label="Número"
                         options={{
-                          defaultValue: String(getUserResponse?.data.address.number),
+                          defaultValue: String(getUserResponse?.data?.address.number),
                         }}
                       />
                     </Grid>
@@ -122,7 +122,7 @@ const Profile: React.FC = () => {
                         name="address.complement"
                         label="Complemento"
                         options={{
-                          defaultValue: getUserResponse?.data.address.complement,
+                          defaultValue: getUserResponse?.data?.address.complement,
                         }}
                       />
                     </Grid>
@@ -132,7 +132,7 @@ const Profile: React.FC = () => {
                         name="address.neighbourhood"
                         label="Bairro"
                         options={{
-                          defaultValue: getUserResponse?.data.address.neighbourhood,
+                          defaultValue: getUserResponse?.data?.address.neighbourhood,
                         }}
                       />
                     </Grid>
@@ -142,7 +142,7 @@ const Profile: React.FC = () => {
                         name="address.city"
                         label="Cidade"
                         options={{
-                          defaultValue: getUserResponse?.data.address.city,
+                          defaultValue: getUserResponse?.data?.address.city,
                         }}
                       />
                     </Grid>
@@ -152,7 +152,7 @@ const Profile: React.FC = () => {
                         name="address.state"
                         label="Estado"
                         options={{
-                          defaultValue: getUserResponse?.data.address.state,
+                          defaultValue: getUserResponse?.data?.address.state,
                         }}
                       />
                     </Grid>
@@ -170,7 +170,7 @@ const Profile: React.FC = () => {
                         name="phone.landline_phone"
                         label="Telefone fixo"
                         options={{
-                          defaultValue: getUserResponse?.data.phone.landline_phone,
+                          defaultValue: getUserResponse?.data?.phone.landline_phone,
                         }}
                       />
                     </Grid>
@@ -180,7 +180,7 @@ const Profile: React.FC = () => {
                         name="phone.mobile_phone"
                         label="Celular"
                         options={{
-                          defaultValue: getUserResponse?.data.phone.mobile_phone,
+                          defaultValue: getUserResponse?.data?.phone.mobile_phone,
                         }}
                       />
                     </Grid>
@@ -198,7 +198,7 @@ const Profile: React.FC = () => {
                         name="email"
                         label="E-mail"
                         options={{
-                          defaultValue: getUserResponse?.data.email,
+                          defaultValue: getUserResponse?.data?.email,
                         }}
                       />
                     </Grid>
@@ -208,7 +208,7 @@ const Profile: React.FC = () => {
                         name="username"
                         label="Usuário"
                         options={{
-                          defaultValue: getUserResponse?.data.username,
+                          defaultValue: getUserResponse?.data?.username,
                         }}
                       />
                     </Grid>
