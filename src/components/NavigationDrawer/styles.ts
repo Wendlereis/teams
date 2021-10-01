@@ -3,15 +3,13 @@ import styled from '@emotion/styled'
 import { Drawer as MuiDrawer, ListItem as MuiListItem, Typography } from '@mui/material'
 
 export const Drawer = styled(MuiDrawer)`
-  ${({ theme: { breakpoints, palette } }) => `
+  ${({ theme: { breakpoints } }) => `
     & .MuiPaper-root {
       padding-top: 56px;
       padding-left: 16px;
       padding-right: 16px;
 
       width: 70%;
-
-      background-color: ${palette.background.default};
 
       ${breakpoints.up('md')} {
         flex-shrink: 0;
