@@ -6,7 +6,7 @@ import { IEventRequest } from '../../interfaces/IEvent'
 import { createAuth } from '../../api/event'
 
 const CreateEvent: React.FC = () => {
-  const { handleSubmit, register } = useForm()
+  const { handleSubmit } = useForm()
 
   const [createEventMutation, { data }] = useMutation(createAuth)
 
@@ -18,13 +18,13 @@ const CreateEvent: React.FC = () => {
     <>
       <h1>Crie um evento</h1>
 
-      <input type="text" name="name" ref={register} />
+      <input type="text" name="name" />
 
-      <input type="date" name="start_date" ref={register} />
+      <input type="date" name="start_date" />
 
-      <input type="date" name="final_date" ref={register} />
+      <input type="date" name="final_date" />
 
-      <select name="event_type_id" ref={register}>
+      <select name="event_type_id">
         <option value="1">EJC</option>
         <option value="2">ECC</option>
         <option value="3">EPC</option>

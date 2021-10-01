@@ -12,7 +12,7 @@ import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
 import { getUserById, updateUser } from '../../api/user'
 
-import * as S from './styles'
+import Wrapper, * as S from './styles'
 
 const Profile: React.FC = () => {
   const methods = useForm()
@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
   return (
     <Layout>
       <Container>
-        <S.Wrapper>
+        <Wrapper>
           <S.TitleWraper>
             <Typography variant="h2">Meu Perfil</Typography>
 
@@ -229,7 +229,7 @@ const Profile: React.FC = () => {
               </S.ButtonWrapper>
             </S.Form>
           </FormProvider>
-        </S.Wrapper>
+        </Wrapper>
       </Container>
     </Layout>
   )

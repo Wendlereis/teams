@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { Paper as MuiPaper, Typography as MuiTypography } from '@mui/material'
 
-export const Wrapper = styled.section`
+const Wrapper = styled.section`
   ${({ theme: { breakpoints } }) => `
     margin-top: 32px;
 
@@ -39,3 +39,5 @@ export const ButtonWrapper = styled.section`
   margin-top: 32px;
   margin-bottom: 80px;
 `
+
+export default Wrapper
