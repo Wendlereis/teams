@@ -9,7 +9,7 @@ const Home: React.FC = () => {
 
   return (
     <Layout>
-      <Container maxWidth="md">
+      <Container>
         <Typography>Olá, {authenticatedUser.name}</Typography>
         <Link href="/profile">profile</Link>
       </Container>
