@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 `
 
 export const TitleWraper = styled.section`
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 `
 
 export const Form = styled.form`
@@ -21,11 +21,11 @@ export const Form = styled.form`
 `
 
 export const BoardWrapper = styled.section`
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 `
 
 export const Board = styled(MuiPaper)`
-  padding: 24px 16px 16px 16px;
+  padding: 24px 24px 16px 24px;
 `
 
 export const BoardTitle = styled(MuiTypography)`

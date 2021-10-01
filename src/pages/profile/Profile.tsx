@@ -43,14 +43,12 @@ const Profile: React.FC = () => {
       <Container>
         <Wrapper>
           <S.TitleWraper>
-            <Typography variant="h2">Meu Perfil</Typography>
+            <Typography variant="h2">Perfil</Typography>
 
             <Typography variant="subtitle1" color="text.secondary">
               Mantenha seu perfil atualizado.
             </Typography>
           </S.TitleWraper>
-
-          <Divider />
 
           <FormProvider {...methods}>
             <S.Form>

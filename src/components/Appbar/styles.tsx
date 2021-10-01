@@ -24,7 +24,7 @@ export const Toolbar = styled(MuiToolbar)`
 `
 
 export const Profile = styled.section`
-  ${({ theme: { palette } }) => `
+  ${({ theme: { breakpoints, palette } }) => `
     display: flex;
     align-items: center;
 
@@ -46,15 +46,23 @@ export const Profile = styled.section`
       }
     }
 
-    & > .MuiTypography-root {
-      margin-right: 8px;
-    }
-
     & .MuiAvatar-root {
       background-color: ${palette.secondary.main};
 
       width: 32px;
       height: 32px;
+
+      ${breakpoints.up('md')} {
+        margin-right: 8px;
+      }
+    }
+
+    & > .MuiTypography-root {
+      display: none;
+
+      ${breakpoints.up('md')} {
+        display: block;
+      }
     }
   `}
 `

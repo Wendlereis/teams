@@ -17,11 +17,11 @@ function Appbar({ greeting, button }: Props): JSX.Element {
         )}
 
         <S.Profile>
-          <Typography color="textSecondary">{greeting}</Typography>
-
           <Avatar>
             <Typography color="inherit">{greetingFirstLetter}</Typography>
           </Avatar>
+
+          <Typography color="textSecondary">{greeting}</Typography>
         </S.Profile>
       </S.Toolbar>
     </S.AppBar>

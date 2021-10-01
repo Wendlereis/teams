@@ -50,7 +50,7 @@ export const ThemeProvider: FC = ({ children }) => {
         main: '#5fa8d3',
       },
       background: {
-        default: '#f9fbfd',
+        default: '#f8fcff',
         paper: '#ffffff',
       },
       text: {
@@ -83,7 +83,6 @@ export const ThemeProvider: FC = ({ children }) => {
       MuiPaper: {
         defaultProps: {
           elevation: 0,
-          variant: 'outlined',
         },
         styleOverrides: {
           rounded: {
