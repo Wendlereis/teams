@@ -50,7 +50,7 @@ export const ThemeProvider: FC = ({ children }) => {
         main: '#5fa8d3',
       },
       background: {
-        default: '#f8fcff',
+        default: '#fbfbfb',
         paper: '#ffffff',
       },
       text: {

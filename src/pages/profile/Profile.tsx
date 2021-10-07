@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from 'react-query'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { Container, Divider, Button, Typography, Grid } from '@mui/material'
+import { Container, Button, Typography, Grid } from '@mui/material'
 
 import Input from '../../components/Input'
 import Layout from '../../components/Layout'
@@ -30,13 +30,13 @@ const Profile: React.FC = () => {
     })
   }
 
-  // if (isLoading) {
-  //   return <h2>Carregando perfil</h2>
-  // }
+  if (isLoading) {
+    return <h2>Carregando perfil</h2>
+  }
 
-  // if (error) {
-  //   return <h2>Erro ao carregar perfil</h2>
-  // }
+  if (error) {
+    return <h2>Erro ao carregar perfil</h2>
+  }
 
   return (
     <Layout>
@@ -70,17 +70,6 @@ const Profile: React.FC = () => {
 
                     <Grid item xs={12} md={6}>
                       <Input
-                        name="age"
-                        label="Idade"
-                        options={{
-                          disabled: true,
-                          defaultValue: String(getUserResponse?.data?.age),
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <Input
                         name="birth_date"
                         label="Data de aniversário"
                         options={{
@@ -97,7 +86,7 @@ const Profile: React.FC = () => {
 
                 <S.Board>
                   <Grid container spacing={2}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={10}>
                       <Input
                         name="address.street"
                         label="Rua"
@@ -107,7 +96,7 @@ const Profile: React.FC = () => {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={2}>
                       <Input
                         name="address.number"
                         label="Número"
@@ -117,7 +106,7 @@ const Profile: React.FC = () => {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={4}>
                       <Input
                         name="address.complement"
                         label="Complemento"
@@ -127,7 +116,7 @@ const Profile: React.FC = () => {
                       />
                     </Grid>
 
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} md={8}>
                       <Input
                         name="address.neighbourhood"
                         label="Bairro"
@@ -195,16 +184,6 @@ const Profile: React.FC = () => {
                   <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                       <Input
-                        name="email"
-                        label="E-mail"
-                        options={{
-                          defaultValue: getUserResponse?.data?.email,
-                        }}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                      <Input
                         name="username"
                         label="Usuário"
                         options={{
@@ -215,6 +194,16 @@ const Profile: React.FC = () => {
 
                     <Grid item xs={12} md={6}>
                       <Input name="password" label="Senha" />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="email"
+                        label="E-mail"
+                        options={{
+                          defaultValue: getUserResponse?.data?.email,
+                        }}
+                      />
                     </Grid>
                   </Grid>
                 </S.Board>
