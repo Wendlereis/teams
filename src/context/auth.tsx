@@ -5,7 +5,7 @@ export const AuthContext = createContext<IAuthContext | undefined>(undefined)
 
 const DEFAULT_USER = {
   id: 0,
-  name: '',
+  name: 'John Doe',
   email: '',
   token: '',
 }

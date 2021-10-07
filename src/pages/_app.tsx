@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 
@@ -22,22 +20,11 @@ interface MyAppProps extends AppProps {
 }
 
 const MyApp: React.FC<MyAppProps> = ({ Component, emotionCache = clientSideEmotionCache, pageProps }) => {
-  useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side')
-
-    if (jssStyles?.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles)
-    }
-  }, [])
-
   return (
     <CacheProvider value={emotionCache}>
       <Head key="custom-head">
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Sans+Pro:wght@400;700;900&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
       </Head>
 
       <ReactQueryCacheProvider queryCache={queryCache}>

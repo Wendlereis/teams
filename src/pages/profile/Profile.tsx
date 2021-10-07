@@ -1,5 +1,10 @@
-import { useForm } from 'react-hook-form'
 import { useMutation, useQuery } from 'react-query'
+import { FormProvider, useForm } from 'react-hook-form'
+
+import { Container, Button, Typography, Grid } from '@mui/material'
+
+import Input from '../../components/Input'
+import Layout from '../../components/Layout'
 
 import { IUser } from '../../interfaces/IUser'
 
@@ -7,8 +12,10 @@ import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
 import { getUserById, updateUser } from '../../api/user'
 
+import Wrapper, * as S from './styles'
+
 const Profile: React.FC = () => {
-  const { handleSubmit, register } = useForm()
+  const methods = useForm()
 
   const { authenticatedUser } = useAuthenticatedUser()
 
@@ -32,113 +39,186 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <main>
-      <h1>Perfil</h1>
+    <Layout>
+      <Container>
+        <Wrapper>
+          <S.TitleWraper>
+            <Typography variant="h2">Perfil</Typography>
 
-      <input
-        name="name"
-        type="text"
-        ref={register}
-        placeholder="Nome"
-        disabled={true}
-        defaultValue={getUserResponse?.data.name}
-      />
+            <Typography variant="subtitle1" color="text.secondary">
+              Mantenha seu perfil atualizado.
+            </Typography>
+          </S.TitleWraper>
 
-      <input
-        name="age"
-        type="text"
-        ref={register}
-        placeholder="Idade"
-        disabled={true}
-        defaultValue={getUserResponse?.data.age}
-      />
+          <FormProvider {...methods}>
+            <S.Form>
+              <S.BoardWrapper>
+                <S.BoardTitle variant="h5">Dados Pessoais</S.BoardTitle>
 
-      <input
-        name="birth_date"
-        type="text"
-        ref={register}
-        placeholder="Data de nascimento"
-        defaultValue={getUserResponse?.data.birth_date}
-      />
+                <S.Board>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="name"
+                        label="Nome completo"
+                        options={{
+                          disabled: true,
+                          defaultValue: String(getUserResponse?.data?.name),
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="address.street"
-        type="text"
-        ref={register}
-        placeholder="Rua"
-        defaultValue={getUserResponse?.data.address.street}
-      />
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="birth_date"
+                        label="Data de aniversário"
+                        options={{
+                          defaultValue: getUserResponse?.data?.birth_date,
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </S.Board>
+              </S.BoardWrapper>
 
-      <input
-        name="address.number"
-        type="text"
-        ref={register}
-        placeholder="Número"
-        defaultValue={getUserResponse?.data.address.number}
-      />
+              <S.BoardWrapper>
+                <S.BoardTitle variant="h5">Endereço</S.BoardTitle>
 
-      <input
-        name="address.complement"
-        type="text"
-        ref={register}
-        placeholder="Complemento"
-        defaultValue={getUserResponse?.data.address.complement}
-      />
+                <S.Board>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={10}>
+                      <Input
+                        name="address.street"
+                        label="Rua"
+                        options={{
+                          defaultValue: getUserResponse?.data?.address.street,
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="address.neighbourhood"
-        type="text"
-        ref={register}
-        placeholder="Bairro"
-        defaultValue={getUserResponse?.data.address.neighbourhood}
-      />
+                    <Grid item xs={12} md={2}>
+                      <Input
+                        name="address.number"
+                        label="Número"
+                        options={{
+                          defaultValue: String(getUserResponse?.data?.address.number),
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="address.city"
-        type="text"
-        ref={register}
-        placeholder="Cidade"
-        defaultValue={getUserResponse?.data.address.city}
-      />
+                    <Grid item xs={12} md={4}>
+                      <Input
+                        name="address.complement"
+                        label="Complemento"
+                        options={{
+                          defaultValue: getUserResponse?.data?.address.complement,
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="address.state"
-        type="text"
-        ref={register}
-        placeholder="Estado"
-        defaultValue={getUserResponse?.data.address.state}
-      />
+                    <Grid item xs={12} md={8}>
+                      <Input
+                        name="address.neighbourhood"
+                        label="Bairro"
+                        options={{
+                          defaultValue: getUserResponse?.data?.address.neighbourhood,
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="phone.landline_phone"
-        type="text"
-        ref={register}
-        placeholder="Telefone fixo"
-        defaultValue={getUserResponse?.data.phone.landline_phone}
-      />
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="address.city"
+                        label="Cidade"
+                        options={{
+                          defaultValue: getUserResponse?.data?.address.city,
+                        }}
+                      />
+                    </Grid>
 
-      <input
-        name="phone.mobile_phone"
-        type="text"
-        ref={register}
-        placeholder="Celular"
-        defaultValue={getUserResponse?.data.phone.mobile_phone}
-      />
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="address.state"
+                        label="Estado"
+                        options={{
+                          defaultValue: getUserResponse?.data?.address.state,
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </S.Board>
+              </S.BoardWrapper>
 
-      <input name="email" type="text" ref={register} placeholder="E-mail" defaultValue={getUserResponse?.data.email} />
+              <S.BoardWrapper>
+                <S.BoardTitle variant="h5">Contato</S.BoardTitle>
 
-      <input
-        name="username"
-        type="text"
-        ref={register}
-        placeholder="Usuário"
-        defaultValue={getUserResponse?.data.username}
-      />
+                <S.Board>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="phone.landline_phone"
+                        label="Telefone fixo"
+                        options={{
+                          defaultValue: getUserResponse?.data?.phone.landline_phone,
+                        }}
+                      />
+                    </Grid>
 
-      <input name="password" type="password" ref={register} placeholder="Senha" />
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="phone.mobile_phone"
+                        label="Celular"
+                        options={{
+                          defaultValue: getUserResponse?.data?.phone.mobile_phone,
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </S.Board>
+              </S.BoardWrapper>
 
-      <button onClick={handleSubmit(handleOnSubmit)}>Salvar</button>
-    </main>
+              <S.BoardWrapper>
+                <S.BoardTitle variant="h5">Acesso</S.BoardTitle>
+
+                <S.Board>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="username"
+                        label="Usuário"
+                        options={{
+                          defaultValue: getUserResponse?.data?.username,
+                        }}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                      <Input name="password" label="Senha" />
+                    </Grid>
+
+                    <Grid item xs={12} md={6}>
+                      <Input
+                        name="email"
+                        label="E-mail"
+                        options={{
+                          defaultValue: getUserResponse?.data?.email,
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </S.Board>
+              </S.BoardWrapper>
+
+              <S.ButtonWrapper>
+                <Button variant="contained" size="large" onClick={methods.handleSubmit(handleOnSubmit)}>
+                  Salvar
+                </Button>
+              </S.ButtonWrapper>
+            </S.Form>
+          </FormProvider>
+        </Wrapper>
+      </Container>
+    </Layout>
   )
 }
 

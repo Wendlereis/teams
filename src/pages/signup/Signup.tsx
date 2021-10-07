@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
-
-import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
+
+import { FormProvider, useForm } from 'react-hook-form'
+
+import Input from '../../components/Input'
 
 import { ICreateUserRequest } from '../../interfaces/IUser'
 
@@ -9,9 +11,10 @@ import { createUser } from '../../api/user'
 import { useEffect } from 'react'
 
 const Signup: React.FC = () => {
+  const methods = useForm()
   const router = useRouter()
 
-  const { handleSubmit, register } = useForm()
+  const { handleSubmit } = useForm()
 
   const [createUserMutation, { isSuccess: isCreateUserSuccess }] = useMutation(createUser)
 
@@ -24,14 +27,14 @@ const Signup: React.FC = () => {
   }, [isCreateUserSuccess])
 
   return (
-    <main>
+    <FormProvider {...methods}>
       <h1>Cadastre-se</h1>
-      <input name="name" type="text" ref={register} placeholder="Nome" />
-      <input name="email" type="text" ref={register} placeholder="E-mail" />
-      <input name="username" type="text" ref={register} placeholder="Usuário" />
-      <input name="password" type="password" ref={register} placeholder="Senha" />
+      <Input name="name" label="Nome" />
+      <Input name="email" label="E-mail" />
+      <Input name="username" label="Usuário" />
+      <Input name="password" label="Senha" />
       <button onClick={handleSubmit(handleOnSubmit)}>Salvar</button>
-    </main>
+    </FormProvider>
   )
 }
 

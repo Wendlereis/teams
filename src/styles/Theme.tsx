@@ -50,7 +50,7 @@ export const ThemeProvider: FC = ({ children }) => {
         main: '#5fa8d3',
       },
       background: {
-        default: '#f7f7f7',
+        default: '#fbfbfb',
         paper: '#ffffff',
       },
       text: {
@@ -62,7 +62,7 @@ export const ThemeProvider: FC = ({ children }) => {
       MuiAppBar: {
         styleOverrides: {
           colorDefault: {
-            backgroundColor: '#f7f7f7',
+            backgroundColor: '#ffffff',
           },
         },
       },
@@ -81,9 +81,12 @@ export const ThemeProvider: FC = ({ children }) => {
         },
       },
       MuiPaper: {
+        defaultProps: {
+          elevation: 0,
+        },
         styleOverrides: {
           rounded: {
-            borderRadius: '16px',
+            borderRadius: '8px',
           },
         },
       },
@@ -101,6 +104,11 @@ export const ThemeProvider: FC = ({ children }) => {
             minWidth: '0px',
             marginRight: '16px',
           },
+        },
+      },
+      MuiContainer: {
+        defaultProps: {
+          maxWidth: 'md',
         },
       },
     },
