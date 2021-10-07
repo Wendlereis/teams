@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { AppBar as MuiAppBar, Toolbar as MuiToolbar } from '@mui/material'
+import { AppBar as MuiAppBar, Toolbar as MuiToolbar, MenuItem as MuiMenuItem } from '@mui/material'
 
 export const AppBar = styled(MuiAppBar)`
   ${({ theme: { breakpoints, zIndex } }) => `
@@ -34,7 +34,7 @@ export const Profile = styled.section`
 
     &:hover {
       background-color: ${palette.secondary.main};
-      transition: all .6s;
+      transition: all .4s;
       cursor: pointer;
 
       & > p {
@@ -63,6 +63,21 @@ export const Profile = styled.section`
       ${breakpoints.up('md')} {
         display: block;
       }
+    }
+  `}
+`
+
+export const MenuItem = styled(MuiMenuItem)`
+  min-width: 200px;
+`
+
+export const MenuItemLink = styled.a`
+  ${({ theme: { palette } }) => `
+    color: ${palette.text.primary};
+    text-decoration: none;
+
+    &:visited {
+      color: ${palette.text.primary};
     }
   `}
 `
