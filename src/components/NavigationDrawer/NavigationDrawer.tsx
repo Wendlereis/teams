@@ -10,19 +10,22 @@ const navigationItems: ListItem[] = [
   {
     icon: <DashboardRounded />,
     text: 'Início',
-    selected: true,
+    path: '/home',
   },
   {
     icon: <EventRounded />,
     text: 'Eventos',
+    path: '/events',
   },
   {
     icon: <WorkspacesRounded />,
     text: 'Times',
+    path: '/teams',
   },
   {
     icon: <GroupRounded />,
     text: 'Usuarios',
+    path: '/users',
   },
 ]
 

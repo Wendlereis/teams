@@ -3,7 +3,7 @@ import { ReactElement } from 'react'
 export interface ListItem {
   icon: ReactElement
   text: string
-  selected?: boolean
+  path: string
 }
 
 export interface Props {
