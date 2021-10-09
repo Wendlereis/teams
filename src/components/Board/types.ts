@@ -1,6 +1,6 @@
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 
 export interface Props {
-  title: string
-  children: ReactElement
+  title?: string
+  children: ReactNode
 }
