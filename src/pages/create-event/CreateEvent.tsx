@@ -1,16 +1,16 @@
 import { useForm } from 'react-hook-form'
 import { useMutation } from 'react-query'
 
-import { IEventRequest } from '../../interfaces/IEvent'
+import { ICreateEventRequest } from '../../interfaces/IEvent'
 
-import { createAuth } from '../../api/event'
+import { createEvent } from '../../api/event'
 
 const CreateEvent: React.FC = () => {
   const { handleSubmit } = useForm()
 
-  const [createEventMutation, { data }] = useMutation(createAuth)
+  const [createEventMutation, { data }] = useMutation(createEvent)
 
-  function handleCreateEvent(event: IEventRequest) {
+  function handleCreateEvent(event: ICreateEventRequest) {
     createEventMutation(event)
   }
 
