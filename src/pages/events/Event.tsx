@@ -2,6 +2,8 @@ import { useQuery } from 'react-query'
 
 import { Chip, Container, Paper, Typography } from '@mui/material'
 
+import { format } from '../../libs/date-fns'
+
 import Board from '../../components/Board'
 import Layout from '../../components/Layout'
 import PageTitle from '../../components/PageTitle'
@@ -21,8 +23,8 @@ function Event(): JSX.Element {
             <Paper key={event.id} variant="outlined">
               <Typography>{event.name}</Typography>
               <Chip color="secondary" label={event.event_type.name} size="small" />
-              <Typography>{event.start_date}</Typography>
-              <Typography>{event.final_date}</Typography>
+              <Typography>{format(new Date(event.start_date))}</Typography>
+              <Typography>{format(new Date(event.final_date))}</Typography>
             </Paper>
           ))}
         </Board>
