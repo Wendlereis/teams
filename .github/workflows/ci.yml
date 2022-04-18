@@ -3,15 +3,12 @@
 
 name: Node.js CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: push
 
 jobs:
   dependencies:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -19,9 +16,9 @@ jobs:
           node-version: '14'
           cache: 'npm'
       - name: install dependencies
-      - run: yarn
-      
-      
+        run: yarn
+
+
 #   build:
 
 #     runs-on: ubuntu-latest
