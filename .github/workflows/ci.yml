@@ -30,14 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: dependencies
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dependencies-artifact
+
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: dependencies-artifact
 
       - name: code styles
         run: yarn lint
@@ -46,14 +46,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: dependencies
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dependencies-artifact
+
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
-
-      - uses: actions/download-artifact@v3
-        with:
-          name: dependencies-artifact
 
       - name: test coverage
         run: yarn test:coverage
