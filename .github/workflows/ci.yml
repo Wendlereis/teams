@@ -36,5 +36,5 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
-       - name: test coverage
+      - name: test coverage
         run: yarn test:coverage
