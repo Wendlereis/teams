@@ -21,16 +21,13 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
     "space-before-function-paren": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "camelcase": "off"
   }
 }

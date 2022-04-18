@@ -17,6 +17,11 @@ jobs:
           cache: 'yarn'
       - name: install dependencies
         run: yarn
+      - name: code styles
+        run: yarn lint
+      - name: test coverage
+        run: yarn test:coverage
+
 
 
 #   build:
