@@ -10,10 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'yarn'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dependencies-artifact
+          path: |
+            node_modules
+            yarn.lock
+
       - name: install dependencies
         run: yarn
 
@@ -25,6 +34,11 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: dependencies-artifact
+
       - name: code styles
         run: yarn lint
 
@@ -36,5 +50,10 @@ jobs:
         with:
           node-version: '16'
           cache: 'yarn'
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: dependencies-artifact
+
       - name: test coverage
         run: yarn test:coverage
