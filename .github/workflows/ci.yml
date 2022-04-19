@@ -8,53 +8,22 @@ on: push
 jobs:
   dependencies:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          cache: 'yarn'
+          cache: 'npm'
 
       - name: install dependencies
-        run: yarn
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: dependencies-artifact
-          path: |
-            node_modules/
-            package.json
-            yarn.lock
-
-  linter:
-    runs-on: ubuntu-latest
-    needs: dependencies
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: dependencies-artifact
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: 'yarn'
-
+        run: npm ci --prefer-offline --no-audit
+        
       - name: code styles
         run: yarn lint
-
-  test:
-    runs-on: ubuntu-latest
-    needs: dependencies
-    steps:
-      - uses: actions/download-artifact@v3
-        with:
-          name: dependencies-artifact
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          cache: 'yarn'
-
+        
       - name: test coverage
         run: yarn test:coverage
+
+
