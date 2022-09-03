@@ -23,12 +23,14 @@ export const Main = styled.main`
 `
 
 export const FloatingButton = styled(Fab)`
-  ${({ theme: { breakpoints } }) => `
+  ${({ theme: { breakpoints, spacing } }) => `
     position: absolute;
+    bottom: ${spacing(3)};
+    right: ${spacing(2)};
 
     ${breakpoints.up('md')} {
-      bottom: 40px;
-      right: 56px;
+      bottom: ${spacing(5)};
+      right: ${spacing(6)};
     }
   `}
 `
