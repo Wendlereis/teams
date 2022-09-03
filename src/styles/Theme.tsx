@@ -50,7 +50,7 @@ export const ThemeProvider: FC = ({ children }) => {
         main: '#5fa8d3',
       },
       background: {
-        default: '#fbfbfb',
+        default: '#fafafade',
         paper: '#ffffff',
       },
       text: {
@@ -63,6 +63,7 @@ export const ThemeProvider: FC = ({ children }) => {
         styleOverrides: {
           colorDefault: {
             backgroundColor: '#ffffff',
+            borderBottomColor: 'transparent',
           },
         },
       },
@@ -70,6 +71,13 @@ export const ThemeProvider: FC = ({ children }) => {
         styleOverrides: {
           root: {
             borderRadius: '8px',
+          },
+        },
+      },
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            borderRightColor: '#d3d3d333',
           },
         },
       },
