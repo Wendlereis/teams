@@ -93,6 +93,9 @@ export const ThemeProvider: FC = ({ children }) => {
           elevation: 0,
         },
         styleOverrides: {
+          root: {
+            color: 'inherit',
+          },
           rounded: {
             borderRadius: '8px',
           },
