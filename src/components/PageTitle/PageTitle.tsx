@@ -7,7 +7,9 @@ import * as S from './styles'
 function PageTitle({ title, subtitle }: Props): JSX.Element {
   return (
     <S.Wraper>
-      <Typography variant="h2">{title}</Typography>
+      <Typography variant="h2" fontWeight="medium">
+        {title}
+      </Typography>
 
       <Typography variant="subtitle1" color="text.secondary">
         {subtitle}
