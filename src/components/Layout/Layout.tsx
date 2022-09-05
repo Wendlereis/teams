@@ -2,11 +2,12 @@ import { FC, useState } from 'react'
 
 import { MenuOpenRounded, MenuRounded } from '@mui/icons-material'
 
-import { Box, useMediaQuery, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 
 import Appbar, { AppbarButton } from '../Appbar'
 import NavigationDrawer from '../NavigationDrawer'
 
+import useResponsiveness from '../../hooks/useResponsiveness'
 import useAuthenticatedUser from '../../hooks/useAuthenticatedUser'
 
 import { Props } from './types'
@@ -14,8 +15,7 @@ import { Props } from './types'
 import * as S from './styles'
 
 const Layout: FC<Props> = ({ children, mainAction }) => {
-  const { breakpoints } = useTheme()
-  const isDesktop = useMediaQuery(breakpoints.up('md'))
+  const { isDesktop } = useResponsiveness()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
 
