@@ -10,7 +10,12 @@ function Dialog({ open, title, actions, children }: Props): JSX.Element {
   const { isDesktop } = useResponsiveness()
 
   return isDesktop ? (
-    <MuiDialog open={open}>
+    <MuiDialog
+      open={open}
+      PaperProps={{
+        sx: { minWidth: 350 },
+      }}
+    >
       <DialogContent title={title} actions={actions}>
         {children}
       </DialogContent>
