@@ -1,6 +1,8 @@
-import { Button, Dialog as MuiDialog, DialogActions, DialogContent, DialogTitle, Drawer } from '@mui/material'
+import { Drawer, Dialog as MuiDialog } from '@mui/material'
 
 import useResponsiveness from '../../hooks/useResponsiveness'
+
+import DialogContent from './DialogContent'
 
 import { Props } from './types'
 
@@ -9,18 +11,9 @@ function Dialog({ open, title, actions, children }: Props): JSX.Element {
 
   return isDesktop ? (
     <MuiDialog open={open}>
-      <DialogTitle>{title}</DialogTitle>
-
-      <DialogContent>{children}</DialogContent>
-
-      <DialogActions>
-        <Button variant="contained" onClick={actions.primary.action}>
-          {actions.primary.label}
-        </Button>
-        <Button variant="outlined" color="secondary" onClick={actions.secondary.action}>
-          {actions.secondary.label}
-        </Button>
-      </DialogActions>
+      <DialogContent title={title} actions={actions}>
+        {children}
+      </DialogContent>
     </MuiDialog>
   ) : (
     <Drawer
@@ -31,18 +24,9 @@ function Dialog({ open, title, actions, children }: Props): JSX.Element {
         sx: { maxHeight: '65%' },
       }}
     >
-      <DialogTitle>{title}</DialogTitle>
-
-      <DialogContent>{children}</DialogContent>
-
-      <DialogActions>
-        <Button variant="contained" onClick={actions.primary.action}>
-          {actions.primary.label}
-        </Button>
-        <Button variant="outlined" color="secondary" onClick={actions.secondary.action}>
-          {actions.secondary.label}
-        </Button>
-      </DialogActions>
+      <DialogContent title={title} actions={actions}>
+        {children}
+      </DialogContent>
     </Drawer>
   )
 }
