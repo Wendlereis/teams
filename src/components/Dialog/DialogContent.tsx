@@ -2,7 +2,7 @@ import { Button, DialogActions, DialogContent as MuiDialogContent, DialogTitle }
 
 import { Props } from './types'
 
-function DialogContent({ title, actions, children }: Omit<Props, 'open'>): JSX.Element {
+function DialogContent({ title, actions, children }: Omit<Props, 'open' | 'onClose'>): JSX.Element {
   return (
     <>
       <DialogTitle>{title}</DialogTitle>

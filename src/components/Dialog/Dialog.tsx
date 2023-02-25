@@ -6,12 +6,13 @@ import DialogContent from './DialogContent'
 
 import { Props } from './types'
 
-function Dialog({ open, title, actions, children }: Props): JSX.Element {
+function Dialog({ open, title, actions, children, onClose }: Props): JSX.Element {
   const { isDesktop } = useResponsiveness()
 
   return isDesktop ? (
     <MuiDialog
       open={open}
+      onClose={onClose}
       PaperProps={{
         sx: { minWidth: 350 },
       }}
@@ -25,6 +26,7 @@ function Dialog({ open, title, actions, children }: Props): JSX.Element {
       open={open}
       variant="temporary"
       anchor="bottom"
+      onClose={onClose}
       PaperProps={{
         sx: { maxHeight: '65%' },
       }}

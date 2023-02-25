@@ -1,4 +1,4 @@
-interface ButtonAction {
+export interface DialogAction {
   label: string
   action: () => void
 }
@@ -6,9 +6,10 @@ interface ButtonAction {
 export interface Props {
   open: boolean
   title: string
-  children: React.ReactElement
+  children: React.ReactNode
+  onClose: () => void
   actions: {
-    primary: ButtonAction
-    secondary: ButtonAction
+    primary: DialogAction
+    secondary: DialogAction
   }
 }
